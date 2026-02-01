@@ -20,5 +20,90 @@
 
         <Image x:Name="accountImage" Height="50" VerticalAlignment="Top" Width="50" Stretch="Uniform" Source="/Images/userIcon.png" Margin="1565,50,305,0"/>
         <ComboBox x:Name="accountComboBox" HorizontalAlignment="Right" Margin="0,50,50,0" VerticalAlignment="Top" Width="250" Height="50" Background="Transparent"/>
+
+        <Grid x:Name="employeeInfoGrid" VerticalAlignment="Bottom" Height="890" Width="1497" Margin="373,0,50,50">
+            <TextBox x:Name="employeeNameTextBlock" Width="1497" Height="50" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="NoWrap" Text="Имя сотрудника" VerticalAlignment="Top" FontSize="36" TextAlignment="Center" FontWeight="SemiBold" IsReadOnly="True" Background="#ab9472"/>
+
+            <GroupBox x:Name="operatingDataGroupBox" Header="Рабочие данные:" Width="720" Margin="0,65,777,55" FontSize="22">
+                <StackPanel Height="724">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="positionTextBlock" Width="200" TextWrapping="NoWrap" Text="Должность:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="positionDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="departmentTextBlock" Width="200" TextWrapping="NoWrap" Text="Отдел:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="departmentDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="workPhoneTextBlock" Width="200" TextWrapping="NoWrap" Text="Рабочий телефон:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="worlPhoneDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="workEmailTextBlock" Width="200" TextWrapping="NoWrap" Text="Рабочий email:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="worlEmailDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="workAddressTextBlock" Width="200" TextWrapping="NoWrap" Text="Рабочий адрес:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="worlAddressDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="experienceTextBlock" Width="200" TextWrapping="NoWrap" Text="Стаж работы:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="experienceDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="startDateTextBlock" Width="230" TextWrapping="NoWrap" Text="Дата трудоустройства:" Height="30" Margin="0,50,0,10"/>
+                        <DatePicker x:Name="startDateDatePicker" Width="230" Margin="0,50,0,10" IsEnabled="False"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="finishDateTextBlock" Width="230" TextWrapping="NoWrap" Text="Дата увольнения:" Height="30" Margin="0,10,0,10"/>
+                        <DatePicker x:Name="finishDateDatePicker" Width="230" Margin="0,10,0,10" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox x:Name="personalDataGroupBox" Header="Личные данные:" Width="720" Margin="777,65,0,55" FontSize="22">
+                <StackPanel Height="724">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="maritalStatusTextBlock" Width="200" TextWrapping="NoWrap" Text="Семейный статус:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="maritalStatusDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="educationTextBlock" Width="200" TextWrapping="NoWrap" Text="Образование:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="educationDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="personalPhoneNumberTextBlock" Width="200" TextWrapping="NoWrap" Text="Телефон:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="personalPhoneNumberDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="personalEmailNumberTextBlock" Width="200" TextWrapping="NoWrap" Text="Email:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="personalEmailNumberDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="personalAddressNumberTextBlock" Width="200" TextWrapping="NoWrap" Text="Адрес:" Height="30" Margin="0,10,0,10"/>
+                        <TextBox x:Name="personalAddressNumberDataTextBox" Width="507" IsReadOnly="True" Background="#ab9472" Margin="0,10,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="birthdayDateTextBlock" Width="200" TextWrapping="NoWrap" Text="Дата рождения:" Height="30" Margin="0,10,0,10"/>
+                        <DatePicker x:Name="birthdayDateDatePicker" Width="230" Margin="0,10,0,10" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <Button x:Name="editButton" Content="Редактировать" HorizontalAlignment="Left" Width="250" Height="50" Margin="0,840,0,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" Background="#59c0f0"/>
+            <Button x:Name="deleteButton" Content="Удалить" HorizontalAlignment="Left" Width="250" Height="50" Margin="1247,840,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" Background="#f24b51"/>
+        </Grid>
     </Grid>
 </Window>
