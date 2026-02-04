@@ -26,7 +26,7 @@ public class AuthController : ControllerBase
         if (user == null)
             return Unauthorized(new { message = "Неверный email или пароль" });
 
-        if (user.PasswordHash != BCrypt.Net.BCrypt.HashPassword(request.Password))
+        if (BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash) == false)
             return Unauthorized(new { message = "Неверный email или пароль" });
 
         // Возвращаем данные пользователя и сотрудника
