@@ -2,6 +2,7 @@
 {
     public class Employee : Person
     {
+        private int _id {  get; set; }
         private string _department { get; set; }
         private string _position { get; set; }
         private DateOnly _startDate { get; set; }
@@ -9,6 +10,11 @@
         private string _workPhoneNumber { get; set; } = string.Empty;
         private string _workEmail { get; set; } = string.Empty;
         private string _workAddress { get; set; }
+
+        public int Id
+        {
+            get { return _id; }
+        }
 
         public string Department 
         { 
