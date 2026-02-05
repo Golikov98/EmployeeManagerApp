@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EmployeeManagerApp.Views"
+        xmlns:local="clr-namespace:EmployeeManagerApp.ViewModels"
         mc:Ignorable="d"
         Title="Менеджер сотрудников" 
         Height="1080" 
@@ -12,6 +12,10 @@
         WindowState="Maximized" 
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
 
     <Grid>
         <Grid x:Name="mainGridOnMainView" IsEnabled="False">
@@ -115,14 +119,16 @@
                 <TextBlock x:Name="authTitle" Text="Авторизация" HorizontalAlignment="Center" FontSize="48" Foreground="White"/>
 
                 <GroupBox x:Name="loginGroupBox" Header="Логин:" FontSize="36" Foreground="White">
-                    <TextBox x:Name="loginTextBox" Width="500" Height="40" Margin="10,10,10,10"/>
+                    <TextBox x:Name="loginTextBox" Width="500" VerticalContentAlignment="Center" Height="40" Margin="10,10,10,10" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" FontSize="28"/>
                 </GroupBox>
 
                 <GroupBox x:Name="passGroupBox" Header="Пароль:" FontSize="36" Foreground="White">
-                    <PasswordBox x:Name="passTextBox" Width="500" Height="40" Margin="10,10,10,10"/>
+                    <TextBox x:Name="passTextBox" Width="500" Height="40" Margin="10,10,10,10" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
                 </GroupBox>
 
-                <Button x:Name="enterButton" Content="Войти" Width="528" Height="50" Margin="0,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Background="#32a852" Foreground="White"/>
+                <TextBlock x:Name="invalidLoginOrPasswordTextBlock" Text="Неверный email или пароль" Width="500" Height="40" Margin="10" Foreground="#f24b51" FontSize="30" Visibility="Hidden"/>
+
+                <Button x:Name="enterButton" Content="Войти" Width="528" Height="50" Margin="0,10,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Background="#32a852" Foreground="White" IsEnabled="{Binding HasAllAuthErrors, UpdateSourceTrigger=PropertyChanged}" Command="{Binding LoginCommand}"/>
             </StackPanel>
         </Grid>
     </Grid>

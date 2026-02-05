@@ -37,8 +37,11 @@ public class EmployeesController : ControllerBase
     public async Task<IActionResult> GetById(uint id)
     {
         var employee = await _db.Employees.FindAsync(id);
+
         if (employee == null)
+        {
             return NotFound(new { message = "Сотрудник не найден" });
+        }
 
         return Ok(employee);
     }
@@ -48,8 +51,11 @@ public class EmployeesController : ControllerBase
     public async Task<IActionResult> Update(uint id, Employee updatedEmployee)
     {
         var employee = await _db.Employees.FindAsync(id);
+
         if (employee == null)
+        {
             return NotFound(new { message = "Сотрудник не найден" });
+        }
 
         // Обновляем все поля, кроме Id и CreatedAt
         employee.Name = updatedEmployee.Name;
@@ -76,8 +82,11 @@ public class EmployeesController : ControllerBase
     public async Task<IActionResult> Delete(uint id)
     {
         var employee = await _db.Employees.FindAsync(id);
+
         if (employee == null)
+        {
             return NotFound(new { message = "Сотрудник не найден" });
+        }
 
         _db.Employees.Remove(employee);
         await _db.SaveChangesAsync();
