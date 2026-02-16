@@ -16,9 +16,13 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
 
     <Grid>
-        <Grid x:Name="mainGridOnMainView" IsEnabled="False">
+        <Grid x:Name="mainGridOnMainView" IsEnabled="{Binding IsAuthenticated}">
             <Grid x:Name="mainListsGrid" Width="300" Height="964.04" Margin="50,42,1570,42">
                 <ComboBox x:Name="sortListComboBox" HorizontalAlignment="Center" Width="300" Height="50" VerticalAlignment="Top" Margin="0,84,0,0"/>
                 <ListBox x:Name="mainListBox" Width="300" Margin="0,155,0,55"/>
@@ -114,7 +118,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="authGrid" Background="Black" Opacity="0.85" IsEnabled="true" Visibility="Visible">
+        <Grid x:Name="authGrid" Background="Black" Opacity="0.85" IsEnabled="{Binding ShowAuthGrid}" Visibility="{Binding ShowAuthGrid, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
             <StackPanel x:Name="authStackPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock x:Name="authTitle" Text="Авторизация" HorizontalAlignment="Center" FontSize="48" Foreground="White"/>
 

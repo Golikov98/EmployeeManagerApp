@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Diagnostics;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -24,6 +25,7 @@ namespace EmployeeManagerApp.Api
             }
 
             _jsonOptions = new JsonSerializerOptions{ PropertyNameCaseInsensitive = true };
+            _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
         }
 
         public async Task<TResponse?> GetAsync<TResponse>(string url)
@@ -36,7 +38,7 @@ namespace EmployeeManagerApp.Api
         }
 
         public async Task<TResponse?> PostAsync<TRequest, TResponse>(string url, TRequest data)
-        {
+        { 
             var response = await _httpClient.PostAsJsonAsync(url, data, _jsonOptions);
 
             await EnsureSuccess(response);

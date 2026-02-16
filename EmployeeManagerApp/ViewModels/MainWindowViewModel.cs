@@ -1,18 +1,21 @@
-﻿using EmployeeManagerApp.Models;
+﻿using EmployeeManagerApp.Api;
+using EmployeeManagerApp.Commands;
+using EmployeeManagerApp.Models;
+using EmployeeManagerApp.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using EmployeeManagerApp.Commands;
 
 namespace EmployeeManagerApp.ViewModels
 {
     internal class MainWindowViewModel: BaseViewModel
     {
         private bool _isAuthenticated = false;
+        private bool _showAuthGrid = true;
         private string _login = string.Empty;
         private string _password = string.Empty;
         private bool _hasAllAuthErrors = false;
-        private User _userModel;
-        private Employee _employeeModel;
+        private readonly AuthTask _authTask;
+
         public string Login
         {
             get => _login;
@@ -23,6 +26,8 @@ namespace EmployeeManagerApp.ViewModels
                 ValidatePassword();
                 HasAllAuthErrors = !HasErrors;
                 OnPropertyChanged();
+
+                ((AsyncRelayCommand)LoginCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -43,12 +48,14 @@ namespace EmployeeManagerApp.ViewModels
         public string Password
         {
             get => _password;
-            set 
+            set
             {
                 _password = value;
                 ValidatePassword();
                 HasAllAuthErrors = !HasErrors;
                 OnPropertyChanged();
+
+                ((AsyncRelayCommand)LoginCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -80,17 +87,56 @@ namespace EmployeeManagerApp.ViewModels
         {
             get => _isAuthenticated;
             set { 
-                _isAuthenticated = value; 
+                _isAuthenticated = value;
+                ShowAuthGrid = !value;
                 OnPropertyChanged(); 
             }
         }
+        public bool ShowAuthGrid
+        {
+            get => _showAuthGrid;
+            set
+            {
+                _showAuthGrid = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public ICommand LoginCommand { get; }
 
+        private async Task LoginAsync()
+        {
+            try
+            {
+                var request = new LoginRequest
+                {
+                    Email = Login,
+                    Password = Password
+                };
+
+                var result = await _authTask.LoginAsync(request);
+
+                IsAuthenticated = true;
+            }
+            catch (ApiException ex)
+            {
+                AddError(nameof(Login), ex.Message);
+                HasAllAuthErrors = true;
+            }
+        }
+
+        private bool CanLogin()
+        {
+            return !HasErrors && !string.IsNullOrWhiteSpace(Login) && !string.IsNullOrWhiteSpace(Password);
+        }
+
         public MainWindowViewModel()
         {
-            _userModel = new User();
-            _employeeModel = new Employee();
+            IApiClient apiClient = new ApiClient("http://localhost:5262/api/");
+            _authTask = new AuthTask(apiClient);
+
+            LoginCommand = new AsyncRelayCommand(LoginAsync, CanLogin);
         }
     }
 }
