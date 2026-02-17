@@ -3,7 +3,7 @@
     public class Person
     {
         private string _name { get; set; }
-        private DateOnly _birthday { get; set; }
+        private DateTime _birthday { get; set; }
         private string _maritalStatus { get; set; }
         private string _personalPhoneNumber { get; set; } = string.Empty;
         private string _personalEmail { get; set; } = string.Empty;
@@ -16,7 +16,7 @@
             set => _name = value;
         }
 
-        public DateOnly Birthday 
+        public DateTime Birthday 
         {
             get => _birthday; 
             set => _birthday = value; 
@@ -55,7 +55,7 @@
         {
             get
             {
-                var today = DateOnly.FromDateTime(DateTime.Today);
+                var today = DateTime.Today;
                 int age = today.Year - _birthday.Year;
 
                 if (_birthday > today.AddYears(-age))
